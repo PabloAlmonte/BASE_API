@@ -1,1 +1,7 @@
+build/
 node_modules/
+
+# Config files
+config.json
+config.test.json
+config.prod.json
