@@ -2,6 +2,8 @@ import Koa from 'koa'
 import cors from '@koa/cors'
 import koaBody from 'koa-body'
 import config from '../config.json'
+import ResponseMiddleware from './middleware/response'
+import router from './router'
 
 const app = new Koa()
 
@@ -15,6 +17,9 @@ app.use(koaBody({
   jsonLimit: '10mb',
   textLimit: '10mb'
 }))
+
+app.use(ResponseMiddleware)
+app.use(router.routes())
 
 const server = app.listen(config.port, () => {
   console.log(`Server running on port: ${config.port}`)
